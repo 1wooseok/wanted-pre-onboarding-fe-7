@@ -1,6 +1,7 @@
+import { useCallback, useEffect } from "react";
 import AuthForm from "../components/Form/AuthForm";
 import onLogin from "../api/auth/onLogin";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLoginState, useLoginAction } from "../context/LoginContext";
 
 export default function Login() {
@@ -8,18 +9,26 @@ export default function Login() {
   const { login } = useLoginAction();
   const loginState = useLoginState();
 
-  const onSubmit = async (e, formData) => {
-    e.preventDefault();
-    const token = await onLogin(formData);
-    if (token) {
-      login(token);
-      navigate("/todo", { replace: true });
+  useEffect(() => {
+    if (loginState) {
+      navigate("/todos");
     }
-  };
+  }, [loginState, navigate]);
+
+  const onSubmit = useCallback(
+    async (e, formData) => {
+      e.preventDefault();
+      const token = await onLogin(formData);
+      if (token) {
+        login(token);
+        navigate("/todo", { replace: true });
+      }
+    },
+    [login, navigate]
+  );
 
   return (
     <>
-      {loginState && <Navigate to="/todo" />}
       <AuthForm title="로그인" onSubmit={onSubmit} />
     </>
   );
