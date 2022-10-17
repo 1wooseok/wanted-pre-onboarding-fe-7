@@ -40,6 +40,7 @@ git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wante
 
 - 이메일과 비밀번호의 유효성 검사
 
+  유효성 검사를 하는 함수를 만들어
   <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/utils/validateFormData.js">유효성 검사 코드</a>
 
 - 버튼 비활성화
@@ -65,7 +66,7 @@ git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wante
 
 리다이렉트가 필요한 컴포넌트에서 loginState를 조회해서
 
-false일 경우 리다이렉트 합니다.
+true일 경우 리다이렉트 합니다.
 
 ```jsx
 // login context
