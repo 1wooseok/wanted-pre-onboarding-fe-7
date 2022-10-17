@@ -1,3 +1,13 @@
+## 배포 주소
+
+<a href="https://1wooseok.github.io/wanted-pre-onboarding-fe-7/" targe="_blank">https://1wooseok.github.io/wanted-pre-onboarding-fe-7/</a>
+
+## 프로젝트 실행 방법
+
+```shell
+git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wanted-pre-onboarding-fe-7 && npm run i && npn run start
+```
+
 ### :: 1. 로그인 / 회원가입
 
 - `/` 경로에 로그인 / 회원가입 기능을 개발해주세요
@@ -5,21 +15,22 @@
   - `/`: 로그인 페이지 입니다.
   - `/signup`: 회원가입 페이지 입니다.
 
-  <br/>
+    <br/>
 
   로그인과 회원가입 페이지를 별도의 경로로 분리했으며,
 
   성공시 `/todo`로 redirect, 실패시 적절한 경고문을 표시합니다.
 
-  <br />
+    <br />
 
-  `context api`를 사용해서 로그인 상태에 전역적으로 접근가능하며,
+  `context api`를 사용해서 로그인 상태를 전역적으로 관리하며,
 
   로그인 or 회원가입시 `localStorage`에 토큰을 저장하고 로그인 상태는 `true`가 되며,
 
   로그아웃시 토큰을 삭제하고 로그인 상태는 `false`가 됩니다.
 
-<br />
+  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/context/LoginContext.jsx#:~:text=const-,actions,-%3D%20useMemo(">code</a>
+  <br />
 
 #### Assignment1
 
