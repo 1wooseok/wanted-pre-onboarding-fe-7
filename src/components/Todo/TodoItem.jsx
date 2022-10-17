@@ -1,7 +1,10 @@
 import { useState, useCallback } from "react";
 import useFormData from "../../hooks/useFormData";
+import onDelete from "../../api/todos/onDelete";
+import onUpdate from "../../api/todos/onUpdate";
+import Button from "../Button/Button";
 
-export default function TodoItem({ dispatch, todoItem, onDelete, onUpdate }) {
+export default function TodoItem({ dispatch, todoItem }) {
   const { todo, id, isCompleted } = todoItem;
   const [editable, setEditable] = useState(false);
   const [formData, onChange] = useFormData({
@@ -20,23 +23,26 @@ export default function TodoItem({ dispatch, todoItem, onDelete, onUpdate }) {
 
   const deleteTodo = useCallback(() => {
     onDelete(dispatch, id);
-  }, [dispatch, id, onDelete]);
+  }, [dispatch, id]);
 
   const updateTodo = useCallback(
-    (e, checked = isCompleted) => {
+    (e) => {
       e.preventDefault();
       onUpdate(dispatch, id, {
         todo: formData.newTodo,
-        isCompleted: checked,
+        isCompleted,
       });
       setEditable(false);
     },
-    [dispatch, onUpdate, id, formData.newTodo, isCompleted]
+    [dispatch, id, formData.newTodo, isCompleted]
   );
 
   const toggleCheck = useCallback(() => {
-    updateTodo(!isCompleted);
-  }, [updateTodo, isCompleted]);
+    onUpdate(dispatch, id, {
+      todo: formData.newTodo,
+      isCompleted: !isCompleted,
+    });
+  }, [dispatch, formData.newTodo, id, isCompleted]);
 
   return (
     <li>
@@ -54,13 +60,13 @@ export default function TodoItem({ dispatch, todoItem, onDelete, onUpdate }) {
       />
       {!editable ? (
         <>
-          <button onClick={toggleEditable}>수정</button>
-          <button onClick={deleteTodo}>삭제</button>
+          <Button onClick={toggleEditable}>수정</Button>
+          <Button onClick={deleteTodo}>삭제</Button>
         </>
       ) : (
         <>
-          <button onClick={toggleEditable}>취소</button>
-          <button onClick={updateTodo}>제출</button>
+          <Button onClick={toggleEditable}>취소</Button>
+          <Button onClick={updateTodo}>제출</Button>
         </>
       )}
     </li>

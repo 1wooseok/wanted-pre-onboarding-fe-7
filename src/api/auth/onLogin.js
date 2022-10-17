@@ -1,8 +1,8 @@
-import { Client } from "../config";
+import { requestLogin } from "./authApi";
 
 export default async function loginAction(formData) {
   try {
-    const { data } = await Client.post("/auth/signin", formData);
+    const { data } = await requestLogin(formData);
     return data.access_token
   } catch (err) {
     if (err.response.status === 401) {

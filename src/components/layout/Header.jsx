@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useLoginState } from "../../context/LoginContext";
 import { useLoginAction } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ export default function Header() {
         </li>
       </ul>
       <div>
-        {loginState && <button onClick={handleLogout}>로그아웃</button>}
+        {loginState && <Button onClick={handleLogout}>로그아웃</Button>}
       </div>
     </header>
   );

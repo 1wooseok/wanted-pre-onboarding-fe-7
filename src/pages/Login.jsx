@@ -1,5 +1,5 @@
 import AuthForm from "../components/Form/AuthForm";
-import loginAction from "../api/actions/loginAction";
+import onLogin from "../api/auth/onLogin";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useLoginState, useLoginAction } from "../context/LoginContext";
 
@@ -10,7 +10,7 @@ export default function Login() {
 
   const onSubmit = async (e, formData) => {
     e.preventDefault();
-    const token = await loginAction(formData);
+    const token = await onLogin(formData);
     if (token) {
       login(token);
       navigate("/todo", { replace: true });

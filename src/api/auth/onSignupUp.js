@@ -1,8 +1,8 @@
-import { Client } from "../config";
+import { requestSignUp } from "./authApi";
 
 export default async function signupAction(formData) {
   try {
-    const { data } = await Client.post("/auth/signup", formData);
+    const { data } = await requestSignUp(formData);
     return data.access_token;
   } catch (err) {
     if (err.response.status === 400) {

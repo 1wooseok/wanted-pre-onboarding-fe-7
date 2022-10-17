@@ -7,7 +7,9 @@ function App() {
     <>
       <Header />
       <main className="main">
-        <Outlet />
+        <div className="wrap">
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </>
