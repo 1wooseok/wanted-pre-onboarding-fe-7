@@ -1,4 +1,4 @@
-import { Client } from "../api/config";
+import { Client } from "../config";
 
 export default async function loginAction(formData) {
   try {

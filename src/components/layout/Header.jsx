@@ -37,15 +37,16 @@ export default function Header() {
             todo
           </Link>
         </li>
+        <li>
+          {!loginState && (
+            <Link className={pathname === "/" ? css["active"] : null} to="/">
+              login
+            </Link>
+          )}
+        </li>
       </ul>
       <div>
-        {loginState ? (
-          <button onClick={handleLogout}>로그아웃</button>
-        ) : (
-          <Link className={pathname === "/" ? css["active"] : null} to="/">
-            login
-          </Link>
-        )}
+        {loginState && <button onClick={handleLogout}>로그아웃</button>}
       </div>
     </header>
   );

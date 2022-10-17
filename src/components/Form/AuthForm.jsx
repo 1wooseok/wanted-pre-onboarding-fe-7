@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import useFormData from "../../hooks/useFormData";
 import { isValidAuthForm } from "../../utils/validateFormData";
 
-export default function AuthForm({
-  title,
-  onSubmit,
-  // formData,
-  // onInput,
-  // disabled,
-}) {
+export default function AuthForm({ title, onSubmit }) {
   const [disabled, setDisabled] = useState(true);
   const [formData, onChange] = useFormData({
     email: "",
@@ -23,10 +17,11 @@ export default function AuthForm({
       setDisabled(true);
     }
   };
+
   return (
     <>
-      <h1>{title}</h1>
-      <form onSubmit={onSubmit}>
+      <h1>{title} 페이지</h1>
+      <form onSubmit={(e) => onSubmit(e, formData)}>
         <label htmlFor="emailForm">이메일</label>
         <input
           id="emailForm"
@@ -46,7 +41,7 @@ export default function AuthForm({
         />
 
         <button type="submit" disabled={disabled}>
-          회원가입
+          {title}
         </button>
       </form>
     </>

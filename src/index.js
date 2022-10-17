@@ -8,9 +8,9 @@ import {
 import { LoginProvider } from "./context/LoginContext";
 
 import App from './App';
-import Login from './pages/Login/Login';
-import Signup from './pages/Signup/Signup';
-import Todo from './pages/Todo/Todo';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Todos from './pages/Todos';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/todo",
-        element: <Todo />,
+        element: <Todos />,
       },
     ]
   },
