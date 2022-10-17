@@ -1,22 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import useFormData from "../../hooks/useFormData";
 import { isValidAuthForm } from "../../utils/validateFormData";
 
 export default function AuthForm({ title, onSubmit }) {
-  const [disabled, setDisabled] = useState(true);
   const [formData, onChange] = useFormData({
     email: "",
     password: "",
   });
-
-  const onInput = (e) => {
-    onChange(e);
-    if (isValidAuthForm(formData)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
+  const isValidForm = isValidAuthForm(formData);
 
   return (
     <>
@@ -27,7 +18,7 @@ export default function AuthForm({ title, onSubmit }) {
           id="emailForm"
           name="email"
           value={formData.email}
-          onChange={onInput}
+          onChange={onChange}
           type="email"
         />
 
@@ -37,10 +28,10 @@ export default function AuthForm({ title, onSubmit }) {
           name="password"
           value={formData.password}
           type="password"
-          onChange={onInput}
+          onChange={onChange}
         />
 
-        <button type="submit" disabled={disabled}>
+        <button type="submit" disabled={!isValidForm}>
           {title}
         </button>
       </form>

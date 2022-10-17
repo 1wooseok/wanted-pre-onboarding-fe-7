@@ -2,69 +2,123 @@
 
 <a href="https://1wooseok.github.io/wanted-pre-onboarding-fe-7/" targe="_blank">https://1wooseok.github.io/wanted-pre-onboarding-fe-7/</a>
 
+<br />
+
 ## 프로젝트 실행 방법
 
 ```shell
 git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wanted-pre-onboarding-fe-7 && npm run i && npn run start
 ```
 
-### :: 1. 로그인 / 회원가입
+<br />
 
-- `/` 경로에 로그인 / 회원가입 기능을 개발해주세요
+## :: 1. 로그인 / 회원가입
 
-  - `/`: 로그인 페이지 입니다.
-  - `/signup`: 회원가입 페이지 입니다.
+`/`: 로그인 페이지 입니다.
 
-    <br/>
+`/signup`: 회원가입 페이지 입니다.
 
-  로그인과 회원가입 페이지를 별도의 경로로 분리했으며,
+  <br/>
 
-  성공시 `/todo`로 redirect, 실패시 적절한 경고문을 표시합니다.
+로그인과 회원가입 페이지를 별도의 경로로 분리했으며,
 
-    <br />
+성공시 `/todo`로 redirect, 실패시 적절한 경고문을 표시합니다.
 
-  `context api`를 사용해서 로그인 상태를 전역적으로 관리하며,
+<br />
 
-  로그인 or 회원가입시 `localStorage`에 토큰을 저장하고 로그인 상태는 `true`가 되며,
+`context api`를 사용해서 로그인 상태를 전역적으로 관리하며,
 
-  로그아웃시 토큰을 삭제하고 로그인 상태는 `false`가 됩니다.
+로그인 or 회원가입시 `localStorage`에 토큰을 저장하고 로그인 상태는 `true`가 되며,
 
-  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/context/LoginContext.jsx#:~:text=const-,actions,-%3D%20useMemo(">code</a>
-  <br />
+로그아웃시 토큰을 삭제하고 로그인 상태는 `false`가 됩니다.
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/context/LoginContext.jsx#:~:text=const-,actions,-%3D%20useMemo(">로그인 코드</a>
+
+<br />
 
 #### Assignment1
 
-- 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
-  - 이메일 조건: `@` 포함
-  - 비밀번호 조건: 8자 이상
-  - 입력된 이메일과 비밀번호가 위 조건을 만족할 때만 버튼이 활성화 되도록 해주세요
-  - 보안 상 실제 사용하고 계신 이메일과 패스워드말고 테스트용 이메일, 패스워드 사용을 권장드립니다.
+- 이메일과 비밀번호의 유효성 검사
+
+  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/utils/validateFormData.js">유효성 검사 코드</a>
+
+- 버튼 비활성화
+
+  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/components/Form/AuthForm.jsx">버튼 비활성화 코드</a>
 
 #### Assignment2
 
-- 로그인 API를 호출하고, 올바른 응답을 받았을 때 `/todo` 경로로 이동해주세요
-  - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
-  - 응답받은 JWT는 로컬 스토리지에 저장해주세요
+- 로그인 API호출, 로컬 스토리지에 토큰 저장, 리다이렉트 함수를 각각 구현후
+  page컴포넌트에서 사용하는 방식으로 구현했습니다.
+
+1.  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/api/actions/loginAction.js">로그인 API호출 코드</a>
+
+2.  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/context/LoginContext.jsx#:~:text=%3D%3E%20(%7B-,login,-(token)">토큰 저장 & 로그인 전역상태 변경 코드</a>
+
+3.  <a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/pages/Login.jsx">pag에서 사용 및 리다이렉트 코드</a>
+
+<br />
 
 #### Assignment3
 
-- 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
-  - 로컬 스토리지에 토큰이 있는 상태로 `/` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
-  - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/` 경로로 리다이렉트 시켜주세요
+로그인 상태를 전역적으로 관리하므로
+
+리다이렉트가 필요한 컴포넌트에서 loginState를 조회해서
+
+false일 경우 리다이렉트 합니다.
+
+```jsx
+// login context
+const [loginState, setLoginState] = useState(
+  Boolean(LocalStorage.get("access_token"))
+);
+```
+
+```jsx
+// redirect
+export default function Login() {
+
+  ...
+
+  return (
+    <>
+      {loginState && <Navigate to="/todo" />}
+      <AuthForm title="로그인" onSubmit={onSubmit} />
+    </>
+  );
+}
+```
+
+<br />
 
 ---
 
-### :: 2. 투두 리스트
+<br />
+
+## :: 2. 투두 리스트
 
 #### Assignment4
 
-- `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
-- 리스트 페이지에는 투두 리스트의 내용과 완료 여부가 표시되어야 합니다.
-- 리스트 페이지에는 입력창과 추가 버튼이 있고, 추가 버튼을 누르면 입력창의 내용이 새로운 투두 리스트로 추가되도록 해주세요
+- `/todo`경로에 진입시 `useEffect`를 사용해 todo 데이터를 불러와 렌더링 합니다.
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/pages/Todos.jsx#:~:text=//%20init-,useEffect,-(()">투두 리스트 코드</a>
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/components/Todo/TodoItem.jsx">투두 입력창 코드</a>
+
+<br />
 
 #### Assignment5
 
-- 투두 리스트의 수정, 삭제 기능을 구현해주세요
-  - 투두 리스트의 개별 아이템 우측에 수정버튼이 존재하고 해당 버튼을 누르면 수정모드가 활성화되고 투두 리스트의 내용을 수정할 수 있도록 해주세요
-  - 수정모드에서는 개별 아이템의 우측에 제출버튼과 취소버튼이 표시되며 해당 버튼을 통해서 수정 내용을 제출하거나 수정을 취소할 수 있도록 해주세요
-  - 투두 리스트의 개별 아이템 우측에 삭제버튼이 존재하고 해당 버튼을 누르면 투두 리스트가 삭제되도록 해주세요
+`useReducer`로 투두 리스트 상태와 변경 로직을 분리했습니다.
+
+수정, 삭제는 커스텀 훅 으로 따로 분리해
+
+요청후 반환값을 `reducer`함수에 전달하여 상태를 알맞게 변경합니다.
+
+수정모드는 `input`의 `disabled`속성이 상태에 따라 바뀜으로서 활성화/비활성화 됩니다.
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/utils/todoReducer.jsx">리듀서 코드</a>
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/tree/main/src/hooks/todos">커스텀 훅 코드</a>
+
+<a href="https://github.com/1wooseok/wanted-pre-onboarding-fe-7/blob/main/src/components/Todo/TodoItem.jsx">투두 입력창</a>

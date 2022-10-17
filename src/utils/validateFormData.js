@@ -10,9 +10,13 @@ export function isValidAuthForm(formData) {
     return false;
   }
 
-  if (password.length < 7) {
+  if (password.length < 8) {
     return false;
   }
 
   return true;
 }
+
+// 이메일 조건: @포함
+// 비밀번호 조건: 8자 이상
+// 입력된 이메일과 비밀번호가 위 조건을 만족할 때만 버튼이 활성화 되도록 해주세요
