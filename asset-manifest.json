@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/css/main.749b3256.css",
-    "main.js": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/js/main.94182c97.js",
+    "main.js": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/js/main.9190a1ce.js",
     "index.html": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/index.html",
     "main.749b3256.css.map": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/css/main.749b3256.css.map",
-    "main.94182c97.js.map": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/js/main.94182c97.js.map"
+    "main.9190a1ce.js.map": "https://1wooseok.github.io/wanted-pre-onboarding-fe-7/static/js/main.9190a1ce.js.map"
   },
   "entrypoints": [
     "static/css/main.749b3256.css",
-    "static/js/main.94182c97.js"
+    "static/js/main.9190a1ce.js"
   ]
 }
