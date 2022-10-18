@@ -3,6 +3,7 @@ const REGEX = {
 
 };
 
+// 이메일 & 비밀번호 조건 검사
 export function isValidAuthForm(formData) {
   const { email, password } = formData;
 

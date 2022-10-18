@@ -9,6 +9,7 @@ export default function AuthForm({ title, onSubmit }) {
     email: "",
     password: "",
   });
+  // 조건에 따라 버튼 비활성화
   const isValidForm = isValidAuthForm(formData);
 
   return (
@@ -38,7 +39,7 @@ export default function AuthForm({ title, onSubmit }) {
             onChange={onChange}
           />
         </div>
-
+        {/* 조건에 따라 버튼 비활성화 */}
         <Button type="submit" disabled={!isValidForm}>
           {title}
         </Button>

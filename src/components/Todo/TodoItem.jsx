@@ -11,6 +11,7 @@ export default function TodoItem({ dispatch, todoItem }) {
     newTodo: todo,
   });
 
+  // 입력창 on/off
   const toggleEditable = useCallback(() => {
     onChange({
       target: {
@@ -21,6 +22,7 @@ export default function TodoItem({ dispatch, todoItem }) {
     setEditable((prev) => !prev);
   }, [todo, onChange]);
 
+  // 체크박스 on/off
   const toggleCheck = useCallback(() => {
     onUpdate(dispatch, id, {
       todo: formData.newTodo,
@@ -28,6 +30,7 @@ export default function TodoItem({ dispatch, todoItem }) {
     });
   }, [dispatch, formData.newTodo, id, isCompleted]);
 
+  // Text 변경
   const updateTodo = useCallback(
     (e) => {
       e.preventDefault();
@@ -40,24 +43,30 @@ export default function TodoItem({ dispatch, todoItem }) {
     [dispatch, formData.newTodo, id, isCompleted]
   );
 
+  // 삭제
   const deleteTodo = useCallback(() => {
     onDelete(dispatch, id);
   }, [dispatch, id]);
 
   return (
     <li>
-      <input
-        type="checkbox"
-        value={isCompleted}
-        onChange={toggleCheck}
-        checked={isCompleted}
-      />
-      <input
-        name="newTodo"
-        value={formData.newTodo}
-        onChange={onChange}
-        disabled={!editable}
-      />
+      {/* 체크박스 & 입력창 */}
+      <>
+        <input
+          type="checkbox"
+          value={isCompleted}
+          onChange={toggleCheck}
+          checked={isCompleted}
+        />
+        <input
+          name="newTodo"
+          value={formData.newTodo}
+          onChange={onChange}
+          // 활성화/비활성화
+          disabled={!editable}
+        />
+      </>
+      {/* 버튼 */}
       {!editable ? (
         <>
           <Button onClick={toggleEditable}>수정</Button>

@@ -1,5 +1,6 @@
 import { requestLogin } from "./authApi";
 
+// 요청 성공시 토큰 반환
 export default async function loginAction(formData) {
   try {
     const { data } = await requestLogin(formData);

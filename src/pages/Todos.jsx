@@ -11,6 +11,7 @@ export default function Todos() {
   const [todos, dispatch] = useReducer(todoReducer, null);
   const loginState = useLoginState();
 
+  // 비로그인 리다이렉트 & 데이터 불러오기
   useEffect(() => {
     if (!loginState) {
       navigate("/");

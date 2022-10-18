@@ -9,6 +9,7 @@ export default function Login() {
   const { login } = useLoginAction();
   const loginState = useLoginState();
 
+  // 로그인 했을 경우 '/todo'로 리다이렉트
   useEffect(() => {
     if (loginState) {
       navigate("/todo");
