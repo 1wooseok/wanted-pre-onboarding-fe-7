@@ -11,7 +11,7 @@ export default function Login() {
 
   useEffect(() => {
     if (loginState) {
-      navigate("/todos");
+      navigate("/todo");
     }
   }, [loginState, navigate]);
 
