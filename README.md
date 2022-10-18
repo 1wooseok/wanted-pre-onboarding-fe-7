@@ -7,7 +7,7 @@
 ## 프로젝트 실행 방법
 
 ```shell
-git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wanted-pre-onboarding-fe-7 && npm run i && npn run start
+git clone https://github.com/1wooseok/wanted-pre-onboarding-fe-7.git && cd wanted-pre-onboarding-fe-7 && npm i && npm run start
 ```
 
 <br />
