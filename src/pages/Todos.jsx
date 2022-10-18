@@ -2,10 +2,7 @@ import { useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginState } from "../context/LoginContext";
 import todoReducer from "../utils/todoReducer";
-// hooks
 import fetchTodos from "../api/todos/fetchTodos";
-import onCreate from "../api/todos/onCreate";
-// Component
 import TodoForm from "../components/Todo/TodoForm";
 import TodoList from "../components/Todo/TodoList";
 
@@ -14,7 +11,6 @@ export default function Todos() {
   const [todos, dispatch] = useReducer(todoReducer, null);
   const loginState = useLoginState();
 
-  // init
   useEffect(() => {
     if (!loginState) {
       navigate("/");
@@ -32,7 +28,7 @@ export default function Todos() {
       ) : (
         <h4>할 일을 추가해보세요.</h4>
       )}
-      <TodoForm dispatch={dispatch} onCreate={onCreate} />
+      <TodoForm dispatch={dispatch} />
     </>
   );
 }

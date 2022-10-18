@@ -21,9 +21,12 @@ export default function TodoItem({ dispatch, todoItem }) {
     setEditable((prev) => !prev);
   }, [todo, onChange]);
 
-  const deleteTodo = useCallback(() => {
-    onDelete(dispatch, id);
-  }, [dispatch, id]);
+  const toggleCheck = useCallback(() => {
+    onUpdate(dispatch, id, {
+      todo: formData.newTodo,
+      isCompleted: !isCompleted,
+    });
+  }, [dispatch, formData.newTodo, id, isCompleted]);
 
   const updateTodo = useCallback(
     (e) => {
@@ -34,15 +37,12 @@ export default function TodoItem({ dispatch, todoItem }) {
       });
       setEditable(false);
     },
-    [dispatch, id, formData.newTodo, isCompleted]
+    [dispatch, formData.newTodo, id, isCompleted]
   );
 
-  const toggleCheck = useCallback(() => {
-    onUpdate(dispatch, id, {
-      todo: formData.newTodo,
-      isCompleted: !isCompleted,
-    });
-  }, [dispatch, formData.newTodo, id, isCompleted]);
+  const deleteTodo = useCallback(() => {
+    onDelete(dispatch, id);
+  }, [dispatch, id]);
 
   return (
     <li>

@@ -27,9 +27,5 @@ export default function Login() {
     [login, navigate]
   );
 
-  return (
-    <>
-      <AuthForm title="로그인" onSubmit={onSubmit} />
-    </>
-  );
+  return <AuthForm title="로그인" onSubmit={onSubmit} />;
 }

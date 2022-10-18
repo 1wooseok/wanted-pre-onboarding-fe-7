@@ -1,6 +1,6 @@
 ## 배포 주소
 
-<a href="https://1wooseok.github.io/wanted-pre-onboarding-fe-7/" targe="_blank">https://1wooseok.github.io/wanted-pre-onboarding-fe-7/</a>
+<a href="https://wanted-pre-onboarding-fe-7-nine.vercel.app/" targe="_blank">https://wanted-pre-onboarding-fe-7-nine.vercel.app/</a>
 
 <br />
 

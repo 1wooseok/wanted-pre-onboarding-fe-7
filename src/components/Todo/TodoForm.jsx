@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import useFormData from "../../hooks/useFormData";
 import Button from "../Button/Button";
+import onCreate from "../../api/todos/onCreate";
 
-export default function TodoForm({ dispatch, onCreate }) {
+export default function TodoForm({ dispatch }) {
   const [formData, onChange, onReset] = useFormData({
     newTodo: "",
   });
@@ -13,7 +14,7 @@ export default function TodoForm({ dispatch, onCreate }) {
       onCreate(dispatch, formData.newTodo);
       onReset();
     },
-    [dispatch, formData.newTodo, onCreate, onReset]
+    [dispatch, formData.newTodo, onReset]
   );
 
   return (
